@@ -52,47 +52,58 @@
       .day-schedule {
         width: 20%;
         height: 100%;
-        padding: 20px;
+        padding: 15px;
+        padding-top: max(15px, env(safe-area-inset-top));
+        padding-bottom: max(15px, env(safe-area-inset-bottom) + 80px); /* 버튼 공간 확보 */
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
       }
 
       .day-header {
         background: rgba(255, 255, 255, 0.95);
         border-radius: 15px;
-        padding: 15px;
-        margin-bottom: 20px;
+        padding: 12px;
+        margin-bottom: 15px;
         text-align: center;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(10px);
+        flex-shrink: 0; /* 헤더 크기 고정 */
       }
 
       .day-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
         color: #333;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
       }
 
       .day-subtitle {
-        font-size: 14px;
+        font-size: 13px;
         color: #666;
       }
 
       .schedule-list {
         flex: 1;
         overflow-y: auto;
-        padding-right: 10px;
+        padding-right: 8px;
+        /* 스크롤 영역 최적화 */
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
       }
 
       .schedule-item {
         background: rgba(255, 255, 255, 0.9);
         border-radius: 12px;
-        padding: 12px 15px;
-        margin-bottom: 10px;
+        padding: 12px;
+        margin-bottom: 8px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
         transition: transform 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
       }
 
       .schedule-item:hover {
@@ -100,25 +111,30 @@
       }
 
       .time {
-        font-size: 12px;
+        flex: 0 0 40%;
+        font-size: 14px;
         color: #7c3aed;
         font-weight: bold;
-        margin-bottom: 5px;
+        text-align: left;
+        padding-right: 8px;
       }
 
       .activity {
-        font-size: 14px;
+        flex: 0 0 60%;
+        font-size: 15px;
         color: #333;
         font-weight: 500;
+        text-align: left;
+        padding-left: 8px;
       }
 
       .navigation {
         position: fixed;
-        bottom: 20px;
+        bottom: max(15px, env(safe-area-inset-bottom) + 15px);
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 10px;
+        gap: 8px;
         z-index: 100;
       }
 
@@ -138,13 +154,13 @@
 
       .nav-button {
         position: fixed;
-        bottom: 80px;
-        width: 50px;
-        height: 50px;
+        bottom: max(70px, env(safe-area-inset-bottom) + 70px);
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.5);
         border: none;
-        font-size: 18px;
+        font-size: 16px;
         color: #333;
         cursor: pointer;
         z-index: 1000;
@@ -154,6 +170,9 @@
         justify-content: center;
         backdrop-filter: blur(10px);
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        /* 터치 최적화 */
+        touch-action: manipulation;
+        user-select: none;
       }
 
       .nav-button:hover {
@@ -166,11 +185,55 @@
       }
 
       .nav-button-left {
-        left: 20px;
+        left: max(15px, env(safe-area-inset-left) + 15px);
       }
 
       .nav-button-right {
-        right: 20px;
+        right: max(15px, env(safe-area-inset-right) + 15px);
+      }
+
+      /* 풀스크린 모드를 위한 추가 스타일 */
+      @media (display-mode: fullscreen) {
+        .container {
+          height: 100vh;
+          height: 100dvh;
+        }
+      }
+
+      @media (display-mode: standalone) {
+        .container {
+          height: 100vh;
+          height: 100dvh;
+        }
+      }
+
+      /* 작은 화면 최적화 */
+      @media (max-height: 600px) {
+        .day-header {
+          padding: 8px;
+          margin-bottom: 10px;
+        }
+
+        .day-title {
+          font-size: 18px;
+        }
+
+        .day-subtitle {
+          font-size: 11px;
+        }
+
+        .schedule-item {
+          padding: 8px 10px;
+          margin-bottom: 6px;
+        }
+
+        .time {
+          font-size: 11px;
+        }
+
+        .activity {
+          font-size: 13px;
+        }
       }
 
       /* 스크롤바 스타일링 */
@@ -246,7 +309,7 @@
             </div>
             <div class="schedule-item study">
               <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부 (수학 등)</div>
+              <div class="activity">📚 공부</div>
             </div>
             <div class="schedule-item">
               <div class="time">07:30 - 08:00</div>
@@ -328,11 +391,11 @@
             </div>
             <div class="schedule-item">
               <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기 (양치 등)</div>
+              <div class="activity">🚿 씻기</div>
             </div>
             <div class="schedule-item study">
               <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부 (수학 등)</div>
+              <div class="activity">📚 공부</div>
             </div>
             <div class="schedule-item">
               <div class="time">07:30 - 08:00</div>
@@ -402,11 +465,11 @@
             </div>
             <div class="schedule-item">
               <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기 (양치 등)</div>
+              <div class="activity">🚿 씻기</div>
             </div>
             <div class="schedule-item study">
               <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부 (수학 등)</div>
+              <div class="activity">📚 공부</div>
             </div>
             <div class="schedule-item">
               <div class="time">07:30 - 08:00</div>
@@ -484,11 +547,11 @@
             </div>
             <div class="schedule-item">
               <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기 (양치 등)</div>
+              <div class="activity">🚿 씻기</div>
             </div>
             <div class="schedule-item study">
               <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부 (수학 등)</div>
+              <div class="activity">📚 공부</div>
             </div>
             <div class="schedule-item">
               <div class="time">07:30 - 08:00</div>
@@ -570,11 +633,11 @@
             </div>
             <div class="schedule-item">
               <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기 (양치 등)</div>
+              <div class="activity">🚿 씻기</div>
             </div>
             <div class="schedule-item study">
               <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부 (수학 등)</div>
+              <div class="activity">📚 공부</div>
             </div>
             <div class="schedule-item">
               <div class="time">07:30 - 08:00</div>
@@ -820,6 +883,16 @@
 
       // 1분마다 현재 시간 업데이트
       setInterval(highlightCurrentTime, 60000);
+
+      // 뷰포트 높이 동적 조정 (모바일 브라우저 UI 대응)
+      function setDynamicViewport() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+
+      window.addEventListener('resize', setDynamicViewport);
+      window.addEventListener('orientationchange', setDynamicViewport);
+      setDynamicViewport();
 
       // 자동 스크롤 (현재 시간 항목으로)
       function scrollToCurrentTime() {
