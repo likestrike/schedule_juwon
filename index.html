@@ -18,13 +18,12 @@
 
       body {
         font-family: 'Arial', sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #ffffff;
         min-height: 100vh;
-        min-height: 100dvh; /* 동적 뷰포트 높이 */
+        min-height: 100dvh;
         overflow-x: hidden;
         margin: 0;
         padding: 0;
-        /* Safe area를 고려한 패딩 */
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
         padding-left: env(safe-area-inset-left);
@@ -35,9 +34,8 @@
         position: relative;
         width: 100%;
         height: 100vh;
-        height: 100dvh; /* 동적 뷰포트 높이 */
+        height: 100dvh;
         overflow: hidden;
-        /* 브라우저 UI를 고려한 높이 조정 */
         max-height: calc(100vh - env(keyboard-inset-height, 0px));
         max-height: calc(100dvh - env(keyboard-inset-height, 0px));
       }
@@ -54,66 +52,67 @@
         height: 100%;
         padding: 15px;
         padding-top: max(15px, env(safe-area-inset-top));
-        padding-bottom: max(15px, env(safe-area-inset-bottom) + 80px); /* 버튼 공간 확보 */
+        padding-bottom: max(15px, env(safe-area-inset-bottom) + 80px);
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
       }
 
       .day-header {
-        background: rgba(255, 255, 255, 0.95);
+        background: rgba(0, 0, 0, 0.8);
         border-radius: 15px;
         padding: 12px;
         margin-bottom: 15px;
         text-align: center;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(10px);
-        flex-shrink: 0; /* 헤더 크기 고정 */
+        flex-shrink: 0;
       }
 
       .day-title {
         font-size: 22px;
         font-weight: bold;
-        color: #333;
+        color: #ffffff;
         margin-bottom: 4px;
       }
 
       .day-subtitle {
         font-size: 13px;
-        color: #666;
+        color: #e0e0e0;
       }
 
       .schedule-list {
         flex: 1;
         overflow-y: auto;
         padding-right: 8px;
-        /* 스크롤 영역 최적화 */
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
       }
 
       .schedule-item {
-        background: rgba(255, 255, 255, 0.9);
+        background: #f8f9fa;
         border-radius: 12px;
         padding: 12px;
         margin-bottom: 8px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(5px);
         transition: transform 0.2s ease;
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        border: 1px solid #e9ecef;
       }
 
       .schedule-item:hover {
         transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       }
 
       .time {
         flex: 0 0 40%;
         font-size: 14px;
-        color: #7c3aed;
+        color: #495057;
         font-weight: bold;
         text-align: left;
         padding-right: 8px;
@@ -122,7 +121,7 @@
       .activity {
         flex: 0 0 60%;
         font-size: 15px;
-        color: #333;
+        color: #212529;
         font-weight: 500;
         text-align: left;
         padding-left: 8px;
@@ -142,13 +141,13 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.3);
         cursor: pointer;
         transition: all 0.3s ease;
       }
 
       .nav-dot.active {
-        background: white;
+        background: #000000;
         transform: scale(1.2);
       }
 
@@ -158,10 +157,10 @@
         width: 45px;
         height: 45px;
         border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.7);
         border: none;
         font-size: 16px;
-        color: #333;
+        color: #ffffff;
         cursor: pointer;
         z-index: 1000;
         transition: all 0.3s ease;
@@ -169,14 +168,13 @@
         align-items: center;
         justify-content: center;
         backdrop-filter: blur(10px);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        /* 터치 최적화 */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         touch-action: manipulation;
         user-select: none;
       }
 
       .nav-button:hover {
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         transform: scale(1.1);
       }
 
@@ -190,6 +188,26 @@
 
       .nav-button-right {
         right: max(15px, env(safe-area-inset-right) + 15px);
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333333;
+        font-size: 18px;
+      }
+
+      .error {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #dc3545;
+        font-size: 16px;
+        text-align: center;
+        padding: 20px;
       }
 
       /* 풀스크린 모드를 위한 추가 스타일 */
@@ -236,572 +254,458 @@
         }
       }
 
-      /* 스크롤바 스타일링 */
       .schedule-list::-webkit-scrollbar {
         width: 4px;
       }
 
       .schedule-list::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.1);
         border-radius: 2px;
       }
 
       .schedule-list::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
+        background: rgba(0, 0, 0, 0.3);
         border-radius: 2px;
       }
 
       /* 현재 시간 하이라이트 */
       .current-time {
-        background: linear-gradient(135deg, #ffeaa7, #fab1a0) !important;
-        border: 2px solid #e17055;
-        animation: glow 2s ease-in-out infinite alternate;
+        background: linear-gradient(135deg, #ff6b6b, #ee5a5a) !important;
+        border: 3px solid #ff4757 !important;
+        box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4) !important;
       }
 
-      @keyframes glow {
-        from {
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      .current-time .time {
+        color: #000 !important;
+        font-weight: bold;
+      }
+
+      .current-time .activity {
+        color: #000 !important;
+        font-weight: bold;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4);
         }
-        to {
-          box-shadow: 0 8px 25px rgba(225, 112, 85, 0.3);
+        50% {
+          box-shadow: 0 12px 35px rgba(255, 71, 87, 0.6);
+          transform: scale(1.08);
         }
+        100% {
+          box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4);
+        }
+      }
+
+      /* 오전/오후 시간대별 색상 및 활동별 색상 */
+      .morning {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb) !important;
+      }
+
+      .afternoon {
+        background: linear-gradient(135deg, #fff3e0, #ffcc80) !important;
+      }
+
+      .evening {
+        background: linear-gradient(135deg, #fce4ec, #f8bbd9) !important;
       }
 
       /* 특별 활동 색상 */
-      .study {
-        background: linear-gradient(135deg, #a8e6cf, #88d8a3) !important;
-      }
       .meal {
         background: linear-gradient(135deg, #ffd93d, #ff9671) !important;
       }
-      .exercise {
-        background: linear-gradient(135deg, #ff9ff3, #f368e0) !important;
-      }
-      .sleep {
-        background: linear-gradient(135deg, #6c5ce7, #a29bfe) !important;
-      }
+
       .free {
         background: linear-gradient(135deg, #74b9ff, #0984e3) !important;
+        color: white !important;
+      }
+
+      .free .time {
+        color: #ffffff !important;
+      }
+
+      .free .activity {
+        color: #ffffff !important;
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div class="loading" id="loading">데이터를 불러오는 중...</div>
+    <div class="error" id="error" style="display: none">
+      데이터를 불러올 수 없습니다.<br />
+      schedule_data.json 파일을 확인해주세요.
+    </div>
+
+    <div class="container" id="container" style="display: none">
       <div class="schedule-wrapper" id="scheduleWrapper">
-        <!-- 월요일 -->
-        <div class="day-schedule">
-          <div class="day-header">
-            <div class="day-title">월요일</div>
-            <div class="day-subtitle">새로운 한 주의 시작!</div>
-          </div>
-          <div class="schedule-list">
-            <div class="schedule-item study">
-              <div class="time">05:00 - 06:00</div>
-              <div class="activity">🌅 기상 후 홈런</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">06:00 - 06:30</div>
-              <div class="activity">🍽️ 아침식사</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">07:30 - 08:00</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">08:00 - 08:30</div>
-              <div class="activity">😌 휴식</div>
-            </div>
-            <div class="schedule-item exercise">
-              <div class="time">08:30 - 09:00</div>
-              <div class="activity">🏃‍♂️ 운동</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">09:00 - 10:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">10:00 - 10:30</div>
-              <div class="activity">📝 영어문법교재</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">10:30 - 12:00</div>
-              <div class="activity">🎬 영화감상</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">12:00 - 13:00</div>
-              <div class="activity">🍱 점심, 간식</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">13:00 - 13:30</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">13:30 - 15:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">15:00 - 15:30</div>
-              <div class="activity">📞 홈런상담</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">15:30 - 17:00</div>
-              <div class="activity">🇺🇸 송글리시</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">17:00 - 17:30</div>
-              <div class="activity">✏️ 숙제하기</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">17:30 - 18:30</div>
-              <div class="activity">🎮 게임</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">18:30 - 20:00</div>
-              <div class="activity">🍽️ 저녁식사, 씻기</div>
-            </div>
-            <div class="schedule-item sleep">
-              <div class="time">20:00 - 05:00</div>
-              <div class="activity">😴 수면</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 화요일 -->
-        <div class="day-schedule">
-          <div class="day-header">
-            <div class="day-title">화요일</div>
-            <div class="day-subtitle">힘찬 하루!</div>
-          </div>
-          <div class="schedule-list">
-            <div class="schedule-item study">
-              <div class="time">05:00 - 06:00</div>
-              <div class="activity">🌅 기상 후 홈런</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">06:00 - 06:30</div>
-              <div class="activity">🍽️ 아침식사</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">07:30 - 08:00</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">08:00 - 08:30</div>
-              <div class="activity">😌 휴식</div>
-            </div>
-            <div class="schedule-item exercise">
-              <div class="time">08:30 - 09:00</div>
-              <div class="activity">🏃‍♂️ 운동</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">09:00 - 10:30</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">10:30 - 12:00</div>
-              <div class="activity">🎬 영화 (선택)</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">12:00 - 13:00</div>
-              <div class="activity">🍱 점심, 간식</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">13:00 - 13:30</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">13:30 - 15:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">15:00 - 16:00</div>
-              <div class="activity">🎨 미술</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">16:00 - 17:00</div>
-              <div class="activity">🎮 게임</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">17:00 - 20:00</div>
-              <div class="activity">🍽️ 저녁식사, 씻기</div>
-            </div>
-            <div class="schedule-item sleep">
-              <div class="time">20:00 - 05:00</div>
-              <div class="activity">😴 수면</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 수요일 -->
-        <div class="day-schedule">
-          <div class="day-header">
-            <div class="day-title">수요일</div>
-            <div class="day-subtitle">중간점 파이팅!</div>
-          </div>
-          <div class="schedule-list">
-            <div class="schedule-item study">
-              <div class="time">05:00 - 06:00</div>
-              <div class="activity">🌅 기상 후 홈런</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">06:00 - 06:30</div>
-              <div class="activity">🍽️ 아침식사</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">07:30 - 08:00</div>
-              <div class="activity">📖 독서, 연산</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">08:00 - 08:30</div>
-              <div class="activity">😌 휴식</div>
-            </div>
-            <div class="schedule-item exercise">
-              <div class="time">08:30 - 09:00</div>
-              <div class="activity">🏃‍♂️ 운동</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">09:00 - 10:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">10:00 - 10:30</div>
-              <div class="activity">📚 영어책제작</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">10:30 - 12:00</div>
-              <div class="activity">🎬 영화 (선택)</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">12:00 - 13:00</div>
-              <div class="activity">🍱 점심, 간식</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">13:00 - 13:30</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">13:30 - 15:30</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">15:30 - 17:00</div>
-              <div class="activity">🇺🇸 송글리시</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">17:00 - 17:30</div>
-              <div class="activity">✏️ 숙제하기</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">17:30 - 18:30</div>
-              <div class="activity">🎮 게임</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">18:30 - 20:00</div>
-              <div class="activity">🍽️ 저녁식사, 씻기</div>
-            </div>
-            <div class="schedule-item sleep">
-              <div class="time">20:00 - 05:00</div>
-              <div class="activity">😴 수면</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 목요일 -->
-        <div class="day-schedule">
-          <div class="day-header">
-            <div class="day-title">목요일</div>
-            <div class="day-subtitle">거의 다 왔어!</div>
-          </div>
-          <div class="schedule-list">
-            <div class="schedule-item study">
-              <div class="time">05:00 - 06:00</div>
-              <div class="activity">🌅 기상 후 홈런</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">06:00 - 06:30</div>
-              <div class="activity">🍽️ 아침식사</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">07:30 - 08:00</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">08:00 - 08:30</div>
-              <div class="activity">😌 휴식</div>
-            </div>
-            <div class="schedule-item exercise">
-              <div class="time">08:30 - 09:00</div>
-              <div class="activity">🏃‍♂️ 운동</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">09:00 - 10:30</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">10:30 - 12:00</div>
-              <div class="activity">🎬 영화 (넷플)</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">12:00 - 13:00</div>
-              <div class="activity">🍱 점심, 간식</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">13:00 - 13:30</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">13:30 - 14:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">14:00 - 14:30</div>
-              <div class="activity">🏠 본격! 아파트탐방</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">14:30 - 16:00</div>
-              <div class="activity">😌 휴식 (자유시간)</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">16:10 - 17:10</div>
-              <div class="activity">🎮 게임</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">17:10 - 18:00</div>
-              <div class="activity">🎈 놀기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">18:00 - 19:00</div>
-              <div class="activity">🧠 싱크빅</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">19:00 - 20:00</div>
-              <div class="activity">🍽️ 저녁식사, 씻기</div>
-            </div>
-            <div class="schedule-item sleep">
-              <div class="time">20:00 - 05:00</div>
-              <div class="activity">😴 수면</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 금요일 -->
-        <div class="day-schedule">
-          <div class="day-header">
-            <div class="day-title">금요일</div>
-            <div class="day-subtitle">주말이 왔어요! 🎉</div>
-          </div>
-          <div class="schedule-list">
-            <div class="schedule-item study">
-              <div class="time">05:00 - 06:00</div>
-              <div class="activity">🌅 기상 후 홈런</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">06:00 - 06:30</div>
-              <div class="activity">🍽️ 아침식사</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">06:30 - 07:00</div>
-              <div class="activity">🚿 씻기</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">07:00 - 07:30</div>
-              <div class="activity">📚 공부</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">07:30 - 08:00</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">08:00 - 08:30</div>
-              <div class="activity">😌 휴식</div>
-            </div>
-            <div class="schedule-item exercise">
-              <div class="time">08:30 - 09:00</div>
-              <div class="activity">🏃‍♂️ 운동</div>
-            </div>
-            <div class="schedule-item free">
-              <div class="time">09:00 - 10:00</div>
-              <div class="activity">🎯 자유시간</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">10:00 - 10:30</div>
-              <div class="activity">📚 영어책 제작</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">10:30 - 12:00</div>
-              <div class="activity">🎬 영화 (넷플)</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">12:00 - 13:00</div>
-              <div class="activity">🍱 점심, 간식</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">13:00 - 13:30</div>
-              <div class="activity">📖 독서</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">13:30 - 15:30</div>
-              <div class="activity">📚 한우리</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">15:30 - 17:00</div>
-              <div class="activity">🇺🇸 송글리시</div>
-            </div>
-            <div class="schedule-item study">
-              <div class="time">17:00 - 17:30</div>
-              <div class="activity">✏️ 숙제하기</div>
-            </div>
-            <div class="schedule-item">
-              <div class="time">17:30 - 18:30</div>
-              <div class="activity">🎮 게임</div>
-            </div>
-            <div class="schedule-item meal">
-              <div class="time">18:30 - 20:00</div>
-              <div class="activity">🍽️ 저녁식사, 씻기</div>
-            </div>
-            <div class="schedule-item sleep">
-              <div class="time">20:00 - 05:00</div>
-              <div class="activity">😴 수면</div>
-            </div>
-          </div>
-        </div>
+        <!-- 동적으로 생성될 스케줄 내용 -->
       </div>
 
       <button class="nav-button nav-button-left" id="prevBtn">←</button>
       <button class="nav-button nav-button-right" id="nextBtn">→</button>
 
-      <div class="navigation">
-        <div class="nav-dot active" data-day="0"></div>
-        <div class="nav-dot" data-day="1"></div>
-        <div class="nav-dot" data-day="2"></div>
-        <div class="nav-dot" data-day="3"></div>
-        <div class="nav-dot" data-day="4"></div>
+      <div class="navigation" id="navigation">
+        <!-- 동적으로 생성될 네비게이션 점들 -->
       </div>
     </div>
 
     <script>
       let currentDay = 0;
-      const totalDays = 5;
+      let totalDays = 0;
+      let scheduleData = null;
       const wrapper = document.getElementById('scheduleWrapper');
-      const navDots = document.querySelectorAll('.nav-dot');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
+      const container = document.getElementById('container');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
 
-      // 네비게이션 버튼 이벤트
-      prevBtn.addEventListener('click', () => {
-        goToDay(currentDay - 1);
-      });
+      // 스케줄 데이터 (JSON 데이터를 직접 포함)
+      const SCHEDULE_DATA = {
+        schedules: {
+          monday: {
+            title: '월요일',
+            subtitle: '새로운 한 주의 시작!',
+            items: [
+              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
+              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
+              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
+              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
+              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
+              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
+              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
+              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '10:00-10:30', activity: '📝 영어문법교재', type: 'study' },
+              { time: '10:30-12:00', activity: '🎬 영화감상', type: 'normal' },
+              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
+              { time: '13:00-13:30', activity: '📖 독서', type: 'normal' },
+              { time: '13:30-15:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '15:00-15:30', activity: '📞 홈런상담', type: 'normal' },
+              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
+              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
+              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
+              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
+              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
+            ],
+          },
+          tuesday: {
+            title: '화요일',
+            subtitle: '힘찬 하루!',
+            items: [
+              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
+              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
+              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
+              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
+              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
+              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
+              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
+              { time: '09:00-10:30', activity: '🎯 자유시간', type: 'free' },
+              { time: '10:30-11:30', activity: '🎮 게임', type: 'normal' },
+              { time: '11:30-12:00', activity: '🍱 라즈키즈', type: 'study' },
+              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
+              { time: '13:00-15:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '15:00-16:00', activity: '🎨 미술', type: 'normal' },
+              { time: '16:00-16:30', activity: '📖 독서', type: 'normal' },
+              { time: '16:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
+              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
+            ],
+          },
+          wednesday: {
+            title: '수요일',
+            subtitle: '중간점 파이팅!',
+            items: [
+              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
+              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
+              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
+              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
+              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
+              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
+              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
+              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '10:00-10:30', activity: '📚 영어책제작', type: 'study' },
+              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
+              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
+              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
+              { time: '13:00-15:30', activity: '🎯 자유시간', type: 'free' },
+              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
+              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
+              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
+              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
+              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
+            ],
+          },
+          thursday: {
+            title: '목요일',
+            subtitle: '거의 다 왔어!',
+            items: [
+              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
+              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
+              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
+              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
+              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
+              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
+              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
+              { time: '09:00-10:30', activity: '🎯 자유시간', type: 'free' },
+              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
+              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
+              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
+              { time: '13:00-14:00', activity: '🍱 라즈키즈&휴식', type: 'study' },
+              { time: '14:00-14:30', activity: '🏠 본격! 아파트탐방', type: 'normal' },
+              { time: '14:30-16:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '16:20-17:20', activity: '🎮 게임', type: 'normal' },
+              { time: '17:20-18:00', activity: '🎈 놀기', type: 'free' },
+              { time: '18:00-19:00', activity: '🧠 싱크빅', type: 'study' },
+              { time: '19:00-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
+              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
+            ],
+          },
+          friday: {
+            title: '금요일',
+            subtitle: '주말이 왔어요! 🎉',
+            items: [
+              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
+              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
+              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
+              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
+              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
+              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
+              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
+              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
+              { time: '10:00-10:30', activity: '📚 영어책 제작', type: 'study' },
+              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
+              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
+              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
+              { time: '13:30-15:30', activity: '📚 한우리', type: 'study' },
+              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
+              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
+              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
+              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
+              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
+            ],
+          },
+        },
+      };
 
-      nextBtn.addEventListener('click', () => {
-        goToDay(currentDay + 1);
-      });
-      let startX = 0;
-      let currentX = 0;
-      let isDragging = false;
+      // 데이터 로드 함수 (이제 내장 데이터 사용)
+      function loadScheduleData() {
+        try {
+          scheduleData = SCHEDULE_DATA;
 
-      // 스와이프 기능 제거하고 스크롤 허용
+          // 스케줄 생성
+          generateSchedule();
 
-      function handleTouchStart(e) {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        wrapper.style.transition = 'none';
-      }
+          // UI 표시
+          loading.style.display = 'none';
+          container.style.display = 'block';
 
-      function handleTouchMove(e) {
-        if (!isDragging) return;
-        e.preventDefault();
-        currentX = e.touches[0].clientX;
-        const deltaX = currentX - startX;
-        const currentTransform = -currentDay * 20;
-        wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
-      }
-
-      function handleTouchEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        wrapper.style.transition = 'transform 0.3s ease-in-out';
-
-        const deltaX = currentX - startX;
-        const threshold = 50;
-
-        if (Math.abs(deltaX) > threshold) {
-          if (deltaX > 0) {
-            // 왼쪽으로 스와이프 (이전 날)
-            goToDay(currentDay - 1);
-          } else {
-            // 오른쪽으로 스와이프 (다음 날)
-            goToDay(currentDay + 1);
-          }
-        } else {
-          // 원래 위치로 되돌리기
-          goToDay(currentDay);
+          // 초기화
+          initializeApp();
+        } catch (err) {
+          console.error('Error loading schedule data:', err);
+          loading.style.display = 'none';
+          error.style.display = 'flex';
         }
       }
 
-      function handleMouseDown(e) {
-        startX = e.clientX;
-        isDragging = true;
-        wrapper.style.transition = 'none';
-        e.preventDefault();
+      // 스케줄 HTML 생성
+      function generateSchedule() {
+        const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+        totalDays = days.length;
+
+        // 기존 내용 초기화
+        wrapper.innerHTML = '';
+
+        days.forEach((dayKey, index) => {
+          const dayData = scheduleData.schedules[dayKey];
+
+          // 일일 스케줄 컨테이너 생성
+          const daySchedule = document.createElement('div');
+          daySchedule.className = 'day-schedule';
+
+          // 헤더 생성
+          const dayHeader = document.createElement('div');
+          dayHeader.className = 'day-header';
+          dayHeader.innerHTML = `
+            <div class="day-title">${dayData.title}</div>
+            <div class="day-subtitle">${dayData.subtitle}</div>
+          `;
+
+          // 스케줄 리스트 생성
+          const scheduleList = document.createElement('div');
+          scheduleList.className = 'schedule-list';
+
+          // 각 스케줄 항목 생성
+          dayData.items.forEach((item) => {
+            const scheduleItem = document.createElement('div');
+
+            // 시간대별 클래스 추가
+            let timeClass = '';
+            const timeStart = item.time.split('-')[0];
+            const hour = parseInt(timeStart.split(':')[0]);
+
+            if (hour >= 5 && hour < 12) {
+              timeClass = 'morning';
+            } else if (hour >= 12 && hour < 18) {
+              timeClass = 'afternoon';
+            } else {
+              timeClass = 'evening';
+            }
+
+            // 활동별 클래스도 유지 (식사, 자유시간은 우선)
+            let activityClass = item.type;
+            if (item.type === 'meal' || item.type === 'free') {
+              scheduleItem.className = `schedule-item ${activityClass}`;
+            } else {
+              scheduleItem.className = `schedule-item ${timeClass}`;
+            }
+
+            // 시간 형식 변환 (05:00-06:00 -> 05:00 - 06:00)
+            const formattedTime = item.time.replace('-', ' - ');
+
+            scheduleItem.innerHTML = `
+              <div class="time">${formattedTime}</div>
+              <div class="activity">${item.activity}</div>
+            `;
+
+            scheduleList.appendChild(scheduleItem);
+          });
+
+          daySchedule.appendChild(dayHeader);
+          daySchedule.appendChild(scheduleList);
+          wrapper.appendChild(daySchedule);
+        });
+
+        // 네비게이션 점들 생성
+        generateNavigation();
       }
 
-      function handleMouseMove(e) {
-        if (!isDragging) return;
-        currentX = e.clientX;
-        const deltaX = currentX - startX;
-        const currentTransform = -currentDay * 20;
-        wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+      // 네비게이션 점 생성
+      function generateNavigation() {
+        const navigation = document.getElementById('navigation');
+        navigation.innerHTML = '';
+
+        for (let i = 0; i < totalDays; i++) {
+          const navDot = document.createElement('div');
+          navDot.className = i === 0 ? 'nav-dot active' : 'nav-dot';
+          navDot.setAttribute('data-day', i);
+          navDot.addEventListener('click', () => goToDay(i));
+          navigation.appendChild(navDot);
+        }
       }
 
-      function handleMouseEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        wrapper.style.transition = 'transform 0.3s ease-in-out';
+      // 앱 초기화
+      function initializeApp() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
 
-        const deltaX = currentX - startX;
-        const threshold = 50;
+        // 네비게이션 버튼 이벤트
+        prevBtn.addEventListener('click', () => {
+          goToDay(currentDay - 1);
+        });
 
-        if (Math.abs(deltaX) > threshold) {
-          if (deltaX > 0) {
+        nextBtn.addEventListener('click', () => {
+          goToDay(currentDay + 1);
+        });
+
+        // 터치/마우스 이벤트 설정
+        setupTouchEvents();
+
+        // 키보드 네비게이션
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') {
             goToDay(currentDay - 1);
-          } else {
+          } else if (e.key === 'ArrowRight') {
             goToDay(currentDay + 1);
           }
-        } else {
-          goToDay(currentDay);
-        }
+        });
+
+        // 현재 시간 하이라이트
+        highlightCurrentTime();
+        setInterval(highlightCurrentTime, 60000);
+
+        // 뷰포트 높이 동적 조정
+        setDynamicViewport();
+        window.addEventListener('resize', setDynamicViewport);
+        window.addEventListener('orientationchange', setDynamicViewport);
+
+        // 현재 시간으로 스크롤
+        setTimeout(scrollToCurrentTime, 2000);
+      }
+
+      // 터치/마우스 이벤트 설정
+      function setupTouchEvents() {
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+
+        // 터치 이벤트
+        wrapper.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].clientX;
+          isDragging = true;
+          wrapper.style.transition = 'none';
+        });
+
+        wrapper.addEventListener('touchmove', (e) => {
+          if (!isDragging) return;
+          e.preventDefault();
+          currentX = e.touches[0].clientX;
+          const deltaX = currentX - startX;
+          const currentTransform = -currentDay * 20;
+          wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+        });
+
+        wrapper.addEventListener('touchend', (e) => {
+          if (!isDragging) return;
+          isDragging = false;
+          wrapper.style.transition = 'transform 0.3s ease-in-out';
+
+          const deltaX = currentX - startX;
+          const threshold = 50;
+
+          if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0) {
+              goToDay(currentDay - 1);
+            } else {
+              goToDay(currentDay + 1);
+            }
+          } else {
+            goToDay(currentDay);
+          }
+        });
+
+        // 마우스 이벤트
+        wrapper.addEventListener('mousedown', (e) => {
+          startX = e.clientX;
+          isDragging = true;
+          wrapper.style.transition = 'none';
+          e.preventDefault();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          currentX = e.clientX;
+          const deltaX = currentX - startX;
+          const currentTransform = -currentDay * 20;
+          wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+        });
+
+        document.addEventListener('mouseup', (e) => {
+          if (!isDragging) return;
+          isDragging = false;
+          wrapper.style.transition = 'transform 0.3s ease-in-out';
+
+          const deltaX = currentX - startX;
+          const threshold = 50;
+
+          if (Math.abs(deltaX) > threshold) {
+            if (deltaX > 0) {
+              goToDay(currentDay - 1);
+            } else {
+              goToDay(currentDay + 1);
+            }
+          } else {
+            goToDay(currentDay);
+          }
+        });
       }
 
       function goToDay(dayIndex) {
@@ -820,26 +724,11 @@
       }
 
       function updateNavigation() {
+        const navDots = document.querySelectorAll('.nav-dot');
         navDots.forEach((dot, index) => {
           dot.classList.toggle('active', index === currentDay);
         });
       }
-
-      // 네비게이션 점 클릭 이벤트
-      navDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          goToDay(index);
-        });
-      });
-
-      // 키보드 네비게이션
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          goToDay(currentDay - 1);
-        } else if (e.key === 'ArrowRight') {
-          goToDay(currentDay + 1);
-        }
-      });
 
       // 현재 시간에 따른 하이라이트
       function highlightCurrentTime() {
@@ -855,6 +744,8 @@
 
         // 현재 요일의 스케줄 항목들 확인
         const currentDaySchedule = document.querySelectorAll('.day-schedule')[currentDay];
+        if (!currentDaySchedule) return;
+
         const scheduleItems = currentDaySchedule.querySelectorAll('.schedule-item');
 
         scheduleItems.forEach((item) => {
@@ -878,21 +769,11 @@
         });
       }
 
-      // 페이지 로드 시 현재 시간 하이라이트
-      highlightCurrentTime();
-
-      // 1분마다 현재 시간 업데이트
-      setInterval(highlightCurrentTime, 60000);
-
-      // 뷰포트 높이 동적 조정 (모바일 브라우저 UI 대응)
+      // 뷰포트 높이 동적 조정
       function setDynamicViewport() {
         const vh = window.innerHeight * 0.01;
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       }
-
-      window.addEventListener('resize', setDynamicViewport);
-      window.addEventListener('orientationchange', setDynamicViewport);
-      setDynamicViewport();
 
       // 자동 스크롤 (현재 시간 항목으로)
       function scrollToCurrentTime() {
@@ -905,8 +786,8 @@
         }
       }
 
-      // 페이지 로드 후 2초 뒤에 현재 시간으로 스크롤
-      setTimeout(scrollToCurrentTime, 2000);
+      // 페이지 로드 시 데이터 로드
+      document.addEventListener('DOMContentLoaded', loadScheduleData);
     </script>
   </body>
 </html>
