@@ -8,13 +8,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="아이 계획표" />
     <meta name="mobile-web-app-capable" content="yes" />
-
+    
     <!-- 캐싱 방지 메타 태그 -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-
-    <title>주원이 방학 계획표 v1.0</title>
+    
+    <title>아이 주간 계획표 v1.1</title>
     <style>
       * {
         margin: 0;
@@ -278,16 +278,18 @@
       .current-time {
         background: linear-gradient(135deg, #ff6b6b, #ee5a5a) !important;
         border: 3px solid #ff4757 !important;
+        animation: pulse 2s ease-in-out infinite;
+        transform: scale(1.05) !important;
         box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4) !important;
       }
 
       .current-time .time {
-        color: #000 !important;
+        color: #ffffff !important;
         font-weight: bold;
       }
 
       .current-time .activity {
-        color: #000 !important;
+        color: #ffffff !important;
         font-weight: bold;
       }
 
@@ -321,7 +323,7 @@
       .meal {
         background: linear-gradient(135deg, #ffd93d, #ff9671) !important;
       }
-
+      
       .free {
         background: linear-gradient(135deg, #74b9ff, #0984e3) !important;
         color: white !important;
@@ -338,12 +340,12 @@
   </head>
   <body>
     <div class="loading" id="loading">데이터를 불러오는 중...</div>
-    <div class="error" id="error" style="display: none">
-      데이터를 불러올 수 없습니다.<br />
+    <div class="error" id="error" style="display: none;">
+      데이터를 불러올 수 없습니다.<br>
       schedule_data.json 파일을 확인해주세요.
     </div>
 
-    <div class="container" id="container" style="display: none">
+    <div class="container" id="container" style="display: none;">
       <div class="schedule-wrapper" id="scheduleWrapper">
         <!-- 동적으로 생성될 스케줄 내용 -->
       </div>
@@ -367,142 +369,142 @@
 
       // 스케줄 데이터 (JSON 데이터를 직접 포함)
       const SCHEDULE_DATA = {
-        schedules: {
-          monday: {
-            title: '월요일',
-            subtitle: '새로운 한 주의 시작!',
-            items: [
-              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
-              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
-              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
-              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
-              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
-              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
-              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
-              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '10:00-10:30', activity: '📝 영어문법교재', type: 'study' },
-              { time: '10:30-12:00', activity: '🎬 영화감상', type: 'normal' },
-              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
-              { time: '13:00-13:30', activity: '📖 독서', type: 'normal' },
-              { time: '13:30-15:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '15:00-15:30', activity: '📞 홈런상담', type: 'normal' },
-              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
-              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
-              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
-              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
-              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
-            ],
+        "schedules": {
+          "monday": {
+            "title": "월요일",
+            "subtitle": "새로운 한 주의 시작!",
+            "items": [
+              { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+              { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+              { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+              { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+              { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+              { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+              { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+              { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "10:00-10:30", "activity": "📝 영어문법교재", "type": "study" },
+              { "time": "10:30-12:00", "activity": "🎬 영화감상", "type": "normal" },
+              { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+              { "time": "13:00-13:30", "activity": "📖 독서", "type": "normal" },
+              { "time": "13:30-15:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "15:00-15:30", "activity": "📞 홈런상담", "type": "normal" },
+              { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+              { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+              { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+              { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+              { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+            ]
           },
-          tuesday: {
-            title: '화요일',
-            subtitle: '힘찬 하루!',
-            items: [
-              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
-              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
-              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
-              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
-              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
-              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
-              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
-              { time: '09:00-10:30', activity: '🎯 자유시간', type: 'free' },
-              { time: '10:30-11:30', activity: '🎮 게임', type: 'normal' },
-              { time: '11:30-12:00', activity: '🍱 라즈키즈', type: 'study' },
-              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
-              { time: '13:00-15:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '15:00-16:00', activity: '🎨 미술', type: 'normal' },
-              { time: '16:00-16:30', activity: '📖 독서', type: 'normal' },
-              { time: '16:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
-              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
-            ],
+          "tuesday": {
+            "title": "화요일",
+            "subtitle": "힘찬 하루!",
+            "items": [
+              { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+              { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+              { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+              { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+              { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+              { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+              { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+              { "time": "09:00-10:30", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "10:30-11:30", "activity": "🎮 게임", "type": "normal" },
+              { "time": "11:30-12:00", "activity": "🍱 라즈키즈", "type": "study" },
+              { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+              { "time": "13:00-15:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "15:00-16:00", "activity": "🎨 미술", "type": "normal" },
+              { "time": "16:00-16:30", "activity": "📖 독서", "type": "normal" },
+              { "time": "16:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+              { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+            ]
           },
-          wednesday: {
-            title: '수요일',
-            subtitle: '중간점 파이팅!',
-            items: [
-              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
-              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
-              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
-              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
-              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
-              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
-              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
-              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '10:00-10:30', activity: '📚 영어책제작', type: 'study' },
-              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
-              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
-              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
-              { time: '13:00-15:30', activity: '🎯 자유시간', type: 'free' },
-              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
-              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
-              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
-              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
-              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
-            ],
+          "wednesday": {
+            "title": "수요일",
+            "subtitle": "중간점 파이팅!",
+            "items": [
+              { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+              { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+              { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+              { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+              { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+              { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+              { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+              { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "10:00-10:30", "activity": "📚 영어책제작", "type": "study" },
+              { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+              { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+              { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+              { "time": "13:00-15:30", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+              { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+              { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+              { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+              { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+            ]
           },
-          thursday: {
-            title: '목요일',
-            subtitle: '거의 다 왔어!',
-            items: [
-              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
-              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
-              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
-              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
-              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
-              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
-              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
-              { time: '09:00-10:30', activity: '🎯 자유시간', type: 'free' },
-              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
-              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
-              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
-              { time: '13:00-14:00', activity: '🍱 라즈키즈&휴식', type: 'study' },
-              { time: '14:00-14:30', activity: '🏠 본격! 아파트탐방', type: 'normal' },
-              { time: '14:30-16:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '16:20-17:20', activity: '🎮 게임', type: 'normal' },
-              { time: '17:20-18:00', activity: '🎈 놀기', type: 'free' },
-              { time: '18:00-19:00', activity: '🧠 싱크빅', type: 'study' },
-              { time: '19:00-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
-              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
-            ],
+          "thursday": {
+            "title": "목요일",
+            "subtitle": "거의 다 왔어!",
+            "items": [
+              { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+              { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+              { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+              { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+              { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+              { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+              { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+              { "time": "09:00-10:30", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+              { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+              { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+              { "time": "13:00-14:00", "activity": "🍱 라즈키즈&휴식", "type": "study" },
+              { "time": "14:00-14:30", "activity": "🏠 본격! 아파트탐방", "type": "normal" },
+              { "time": "14:30-16:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "16:20-17:20", "activity": "🎮 게임", "type": "normal" },
+              { "time": "17:20-18:00", "activity": "🎈 놀기", "type": "free" },
+              { "time": "18:00-19:00", "activity": "🧠 싱크빅", "type": "study" },
+              { "time": "19:00-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+              { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+            ]
           },
-          friday: {
-            title: '금요일',
-            subtitle: '주말이 왔어요! 🎉',
-            items: [
-              { time: '05:00-06:00', activity: '🌅 기상 후 홈런', type: 'study' },
-              { time: '06:00-06:30', activity: '🍽️ 아침식사', type: 'meal' },
-              { time: '06:30-07:00', activity: '🚿 씻기', type: 'normal' },
-              { time: '07:00-07:30', activity: '📚 공부', type: 'study' },
-              { time: '07:30-08:00', activity: '📖 독서', type: 'normal' },
-              { time: '08:00-08:30', activity: '😌 휴식', type: 'normal' },
-              { time: '08:30-09:00', activity: '🏃‍♂️ 운동', type: 'exercise' },
-              { time: '09:00-10:00', activity: '🎯 자유시간', type: 'free' },
-              { time: '10:00-10:30', activity: '📚 영어책 제작', type: 'study' },
-              { time: '10:30-11:30', activity: '🎈 엔트리', type: 'normal' },
-              { time: '11:30-12:00', activity: '😌 휴식', type: 'normal' },
-              { time: '12:00-13:00', activity: '🍱 점심, 간식', type: 'meal' },
-              { time: '13:30-15:30', activity: '📚 한우리', type: 'study' },
-              { time: '15:30-17:00', activity: '🇺🇸 송글리시', type: 'study' },
-              { time: '17:00-17:30', activity: '✏️ 숙제하기', type: 'study' },
-              { time: '17:30-18:30', activity: '🎮 게임', type: 'normal' },
-              { time: '18:30-20:00', activity: '🍽️ 저녁식사, 씻기', type: 'meal' },
-              { time: '20:00-05:00', activity: '😴 수면', type: 'sleep' },
-            ],
-          },
-        },
+          "friday": {
+            "title": "금요일",
+            "subtitle": "주말이 왔어요! 🎉",
+            "items": [
+              { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+              { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+              { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+              { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+              { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+              { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+              { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+              { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+              { "time": "10:00-10:30", "activity": "📚 영어책 제작", "type": "study" },
+              { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+              { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+              { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+              { "time": "13:30-15:30", "activity": "📚 한우리", "type": "study" },
+              { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+              { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+              { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+              { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+              { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+            ]
+          }
+        }
       };
 
       // 데이터 로드 함수 (이제 내장 데이터 사용)
       function loadScheduleData() {
         try {
           scheduleData = SCHEDULE_DATA;
-
+          
           // 스케줄 생성
           generateSchedule();
-
+          
           // UI 표시
           loading.style.display = 'none';
           container.style.display = 'block';
-
+          
           // 초기화
           initializeApp();
         } catch (err) {
@@ -522,7 +524,7 @@
 
         days.forEach((dayKey, index) => {
           const dayData = scheduleData.schedules[dayKey];
-
+          
           // 일일 스케줄 컨테이너 생성
           const daySchedule = document.createElement('div');
           daySchedule.className = 'day-schedule';
@@ -540,14 +542,14 @@
           scheduleList.className = 'schedule-list';
 
           // 각 스케줄 항목 생성
-          dayData.items.forEach((item) => {
+          dayData.items.forEach(item => {
             const scheduleItem = document.createElement('div');
-
+            
             // 시간대별 클래스 추가
             let timeClass = '';
             const timeStart = item.time.split('-')[0];
             const hour = parseInt(timeStart.split(':')[0]);
-
+            
             if (hour >= 5 && hour < 12) {
               timeClass = 'morning';
             } else if (hour >= 12 && hour < 18) {
@@ -555,7 +557,7 @@
             } else {
               timeClass = 'evening';
             }
-
+            
             // 활동별 클래스도 유지 (식사, 자유시간은 우선)
             let activityClass = item.type;
             if (item.type === 'meal' || item.type === 'free') {
@@ -563,10 +565,10 @@
             } else {
               scheduleItem.className = `schedule-item ${timeClass}`;
             }
-
+            
             // 시간 형식 변환 (05:00-06:00 -> 05:00 - 06:00)
             const formattedTime = item.time.replace('-', ' - ');
-
+            
             scheduleItem.innerHTML = `
               <div class="time">${formattedTime}</div>
               <div class="activity">${item.activity}</div>
@@ -640,29 +642,53 @@
       // 터치/마우스 이벤트 설정
       function setupTouchEvents() {
         let startX = 0;
+        let startY = 0;
         let currentX = 0;
+        let currentY = 0;
         let isDragging = false;
+        let isVerticalScroll = false;
 
         // 터치 이벤트
         wrapper.addEventListener('touchstart', (e) => {
           startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
           isDragging = true;
+          isVerticalScroll = false;
           wrapper.style.transition = 'none';
-        });
+        }, { passive: true });
 
         wrapper.addEventListener('touchmove', (e) => {
           if (!isDragging) return;
-          e.preventDefault();
+          
           currentX = e.touches[0].clientX;
+          currentY = e.touches[0].clientY;
+          
           const deltaX = currentX - startX;
-          const currentTransform = -currentDay * 20;
-          wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
-        });
+          const deltaY = currentY - startY;
+          
+          // 세로 스크롤인지 가로 스와이프인지 판단
+          if (!isVerticalScroll && Math.abs(deltaY) > Math.abs(deltaX)) {
+            // 세로 스크롤로 판단되면 가로 스와이프 비활성화
+            isVerticalScroll = true;
+            return;
+          } else if (!isVerticalScroll && Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+            // 가로 스와이프로 판단되면 세로 스크롤 방지
+            e.preventDefault();
+            const currentTransform = -currentDay * 20;
+            wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+          }
+        }, { passive: false });
 
         wrapper.addEventListener('touchend', (e) => {
           if (!isDragging) return;
           isDragging = false;
           wrapper.style.transition = 'transform 0.3s ease-in-out';
+
+          // 세로 스크롤이었다면 가로 이동 처리하지 않음
+          if (isVerticalScroll) {
+            goToDay(currentDay);
+            return;
+          }
 
           const deltaX = currentX - startX;
           const threshold = 50;
@@ -676,22 +702,32 @@
           } else {
             goToDay(currentDay);
           }
-        });
+        }, { passive: true });
 
-        // 마우스 이벤트
+        // 마우스 이벤트 (데스크톱용)
         wrapper.addEventListener('mousedown', (e) => {
           startX = e.clientX;
+          startY = e.clientY;
           isDragging = true;
+          isVerticalScroll = false;
           wrapper.style.transition = 'none';
           e.preventDefault();
         });
 
         document.addEventListener('mousemove', (e) => {
           if (!isDragging) return;
+          
           currentX = e.clientX;
+          currentY = e.clientY;
+          
           const deltaX = currentX - startX;
-          const currentTransform = -currentDay * 20;
-          wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+          const deltaY = currentY - startY;
+          
+          // 마우스는 가로 드래그만 허용
+          if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            const currentTransform = -currentDay * 20;
+            wrapper.style.transform = `translateX(${currentTransform + (deltaX / window.innerWidth) * 20}%)`;
+          }
         });
 
         document.addEventListener('mouseup', (e) => {
