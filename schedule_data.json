@@ -1,0 +1,124 @@
+{
+  "schedules": {
+    "monday": {
+      "title": "월요일",
+      "subtitle": "새로운 한 주의 시작!",
+      "items": [
+        { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+        { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+        { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+        { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+        { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+        { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+        { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+        { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "10:00-10:30", "activity": "📝 영어문법교재", "type": "study" },
+        { "time": "10:30-12:00", "activity": "🎬 영화감상", "type": "normal" },
+        { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+        { "time": "13:00-13:30", "activity": "📖 독서", "type": "normal" },
+        { "time": "13:30-15:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "15:00-15:30", "activity": "📞 홈런상담", "type": "normal" },
+        { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+        { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+        { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+        { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+        { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+      ]
+    },
+    "tuesday": {
+      "title": "화요일",
+      "subtitle": "힘찬 하루!",
+      "items": [
+        { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+        { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+        { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+        { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+        { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+        { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+        { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+        { "time": "09:00-10:30", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "10:30-11:30", "activity": "🎮 게임", "type": "normal" },
+        { "time": "11:30-12:00", "activity": "🍱 라즈키즈", "type": "study" },
+        { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+        { "time": "13:00-15:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "15:00-16:00", "activity": "🎨 미술", "type": "normal" },
+        { "time": "16:00-16:30", "activity": "📖 독서", "type": "normal" },
+        { "time": "16:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+        { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+      ]
+    },
+    "wednesday": {
+      "title": "수요일",
+      "subtitle": "중간점 파이팅!",
+      "items": [
+        { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+        { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+        { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+        { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+        { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+        { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+        { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+        { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "10:00-10:30", "activity": "📚 영어책제작", "type": "study" },
+        { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+        { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+        { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+        { "time": "13:00-15:30", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+        { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+        { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+        { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+        { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+      ]
+    },
+    "thursday": {
+      "title": "목요일",
+      "subtitle": "거의 다 왔어!",
+      "items": [
+        { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+        { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+        { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+        { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+        { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+        { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+        { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+        { "time": "09:00-10:30", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+        { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+        { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+        { "time": "13:00-14:00", "activity": "🍱 라즈키즈&휴식", "type": "study" },
+        { "time": "14:00-14:30", "activity": "🏠 본격! 아파트탐방", "type": "normal" },
+        { "time": "14:30-16:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "16:20-17:20", "activity": "🎮 게임", "type": "normal" },
+        { "time": "17:20-18:00", "activity": "🎈 놀기", "type": "free" },
+        { "time": "18:00-19:00", "activity": "🧠 싱크빅", "type": "study" },
+        { "time": "19:00-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+        { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+      ]
+    },
+    "friday": {
+      "title": "금요일",
+      "subtitle": "주말이 왔어요! 🎉",
+      "items": [
+        { "time": "05:00-06:00", "activity": "🌅 기상 후 홈런", "type": "study" },
+        { "time": "06:00-06:30", "activity": "🍽️ 아침식사", "type": "meal" },
+        { "time": "06:30-07:00", "activity": "🚿 씻기", "type": "normal" },
+        { "time": "07:00-07:30", "activity": "📚 공부", "type": "study" },
+        { "time": "07:30-08:00", "activity": "📖 독서", "type": "normal" },
+        { "time": "08:00-08:30", "activity": "😌 휴식", "type": "normal" },
+        { "time": "08:30-09:00", "activity": "🏃‍♂️ 운동", "type": "exercise" },
+        { "time": "09:00-10:00", "activity": "🎯 자유시간", "type": "free" },
+        { "time": "10:00-10:30", "activity": "📚 영어책 제작", "type": "study" },
+        { "time": "10:30-11:30", "activity": "🎈 엔트리", "type": "normal" },
+        { "time": "11:30-12:00", "activity": "😌 휴식", "type": "normal" },
+        { "time": "12:00-13:00", "activity": "🍱 점심, 간식", "type": "meal" },
+        { "time": "13:30-15:30", "activity": "📚 한우리", "type": "study" },
+        { "time": "15:30-17:00", "activity": "🇺🇸 송글리시", "type": "study" },
+        { "time": "17:00-17:30", "activity": "✏️ 숙제하기", "type": "study" },
+        { "time": "17:30-18:30", "activity": "🎮 게임", "type": "normal" },
+        { "time": "18:30-20:00", "activity": "🍽️ 저녁식사, 씻기", "type": "meal" },
+        { "time": "20:00-05:00", "activity": "😴 수면", "type": "sleep" }
+      ]
+    }
+  }
+}
