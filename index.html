@@ -8,7 +8,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="아이 계획표" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <title>아이 주간 계획표</title>
+
+    <!-- 캐싱 방지 메타 태그 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>주원이 방학 계획표 v1.0</title>
     <style>
       * {
         margin: 0;
@@ -272,16 +278,18 @@
       .current-time {
         background: linear-gradient(135deg, #ff6b6b, #ee5a5a) !important;
         border: 3px solid #ff4757 !important;
+        animation: pulse 2s ease-in-out infinite;
+        transform: scale(1.05) !important;
         box-shadow: 0 8px 30px rgba(255, 71, 87, 0.4) !important;
       }
 
       .current-time .time {
-        color: #000 !important;
+        color: #ffffff !important;
         font-weight: bold;
       }
 
       .current-time .activity {
-        color: #000 !important;
+        color: #ffffff !important;
         font-weight: bold;
       }
 
